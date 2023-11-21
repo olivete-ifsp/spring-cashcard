@@ -5,3 +5,4 @@ CashCard service for Family Cash Cards
 - API REST utilizando Spring
 - Desenvolvimento orientado a testes (TDD)
 - Utilização de contratos de API e JSON
+- Implementação de testes unitários
