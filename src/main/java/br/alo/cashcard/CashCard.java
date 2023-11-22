@@ -1,6 +1,8 @@
 package br.alo.cashcard;
 
-public record CashCard( Long id, 
+import org.springframework.data.annotation.Id;
+
+public record CashCard( @Id Long id, 
                         Double amount
     ) {
 }
