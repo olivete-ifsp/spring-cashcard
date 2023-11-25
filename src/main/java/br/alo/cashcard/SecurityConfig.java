@@ -26,6 +26,11 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     // @Bean
     // UserDetailsService testOnlyUsers(PasswordEncoder passwordEncoder) {
     //     User.UserBuilder users = User.builder();
@@ -45,16 +50,17 @@ public class SecurityConfig {
                 .password(passwordEncoder.encode("abc123"))
                 .roles("CARD-OWNER") // new role
                 .build();
+        UserDetails kumar2 = users
+                .username("kumar2")
+                .password(passwordEncoder.encode("xyz789"))
+                .roles("CARD-OWNER") // new role
+                .build();
         UserDetails hankOwnsNoCards = users
                 .username("hank-owns-no-cards")
                 .password(passwordEncoder.encode("qrs456"))
                 .roles("NON-OWNER") // new role
                 .build();
-        return new InMemoryUserDetailsManager(sarah, hankOwnsNoCards);
+        return new InMemoryUserDetailsManager(sarah, hankOwnsNoCards, kumar2);
     }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }
